@@ -1,12 +1,12 @@
 <?php
 // có class chứa các function thực thi xử lý logic 
-class ProductController
+class AdminProductController
 {
     public $modelProduct;
 
     public function __construct()
     {
-        $this->modelProduct = new ProductModel();
+        $this->modelProduct = new AdminProductModel();
     }
 
     public function Home()
