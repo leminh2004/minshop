@@ -9,6 +9,7 @@ class AdminProductModel
     }
 
     // Viết truy vấn danh sách sản phẩm 
+
     public function getAllProduct()
     {
         
