@@ -1,6 +1,6 @@
 <?php 
 // Có class chứa các function thực thi tương tác với cơ sở dữ liệu 
-class AdminProductModel 
+class AdminProduct 
 {
     public $conn;
     public function __construct()

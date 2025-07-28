@@ -33,8 +33,13 @@ match ($act) {
     '/'=>(new HomeController())->Home(),
 
     //Admin
-    'admin'=>(new AdminProductController())->Home(),
-    'admin/danh-sach-san-pham'=>(new AdminProductController())->productList(),
+    'admin'=>(new AdminProductController())->productList(),
+
+    // Danh mục Admin
+    'admin/quan-ly-danh-muc'=>(new AdminCategoryController())->categoryList(),
+
+    // Sản phẩm
+    'admin/quan-ly-san-pham'=>(new AdminProductController())->productList(),
 
 
 };

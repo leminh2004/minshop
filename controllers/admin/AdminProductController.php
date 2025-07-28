@@ -6,7 +6,7 @@ class AdminProductController
 
     public function __construct()
     {
-        $this->modelProduct = new AdminProductModel();
+        $this->modelProduct = new AdminProduct();
     }
 
     public function Home()
