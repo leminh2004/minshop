@@ -11,8 +11,13 @@ class AdminProductController
 
     public function Home()
     {
-        $title = "Đây là trang chủ nhé hahaa";
-        $thoiTiet = "Hôm nay trời có vẻ là mưa";
-        require_once './views/trangchu.php';
+        echo "Đây là trang chủ";
+    }
+
+    public function productList()
+    {
+        $listProduct = $this->modelProduct->getAllProduct();
+        // var_dump($listProduct);die();
+        require_once './views/admin/products/listProduct.php';
     }
 }

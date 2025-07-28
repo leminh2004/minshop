@@ -5,11 +5,22 @@
 require_once './commons/env.php'; // Khai báo biến môi trường
 require_once './commons/function.php'; // Hàm hỗ trợ
 
-// Require toàn bộ file Controllers
-require_once './controllers/HomeController.php';
+// Controllers - Require toàn bộ file Controllers
+// Admin
+require_once './controllers/admin/AdminProductController.php';
+require_once './controllers/admin/AdminCategoryController.php';
 
-// Require toàn bộ file Models
-require_once './models/Product.php';
+// User
+require_once './controllers/user/HomeController.php';
+
+// Models - Require toàn bộ file 
+// Admin
+require_once './models/admin/AdminProduct.php';
+require_once './models/admin/AdminCategory.php';
+
+
+// User
+require_once './models/user/Product.php';
 
 // Route
 $act = $_GET['act'] ?? '/';
@@ -22,7 +33,8 @@ match ($act) {
     '/'=>(new HomeController())->Home(),
 
     //Admin
-    '/admin'=>(new AdminProductController())->Home(),
-    
+    'admin'=>(new AdminProductController())->Home(),
+    'admin/danh-sach-san-pham'=>(new AdminProductController())->productList(),
+
 
 };
