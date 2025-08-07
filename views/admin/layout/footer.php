@@ -30,4 +30,4 @@
 <!-- AdminLTE App -->
 <script src="./assets/admin/dist/js/adminlte.min.js"></script>
 <!-- AdminLTE for demo purposes -->
-<script src="./assets/admin/dist/js/demo.js"></script>
+<!-- <script src="./assets/admin/dist/js/demo.js"></script> -->

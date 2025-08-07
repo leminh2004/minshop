@@ -29,9 +29,11 @@
             <div class="row">
                 <div class="col-12">
                     <div class="card">
-
+                        
                         <!-- /.card-header -->
                         <div class="card-body">
+                            <a href="<?= BASE_URL . '?act=admin/form-them-san-pham'?>" class="btn btn-primary">Thêm sản phẩm</a>
+
                             <table id="example1" class="table table-bordered table-striped">
                                 <thead>
                                     <tr>
@@ -40,6 +42,7 @@
                                         <th>Hình ảnh</th>
                                         <th>Giá sản phẩm</th>
                                         <th>Giá khuyến mãi</th>
+                                        <th>Danh mục</th>
                                         <th>Số lượng</th>
                                         <th>Hành động</th>
                                     </tr>
@@ -52,6 +55,7 @@
                                             <td></td>
                                             <td><?= $product['price']; ?></td>
                                             <td><?=$product['discount']; ?></td>
+                                            <td><?=$product['cate_name']; ?></td>
                                             <td><?= $product['quantity']; ?></td>
                                             <td>
                                                 <a href="" class="btn btn-primary">Chi tiết</a>
@@ -68,6 +72,7 @@
                                         <th>Hình ảnh</th>
                                         <th>Giá sản phẩm</th>
                                         <th>Giá khuyến mãi</th>
+                                        <th>Danh mục</th>
                                         <th>Số lượng</th>
                                         <th>Hành động</th>
                                     </tr>

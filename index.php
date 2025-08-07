@@ -1,6 +1,5 @@
-<?php 
+<?php
 // Require toàn bộ các file khai báo môi trường, thực thi,...(không require view)
-
 // Require file Common
 require_once './commons/env.php'; // Khai báo biến môi trường
 require_once './commons/function.php'; // Hàm hỗ trợ
@@ -33,13 +32,18 @@ match ($act) {
     '/'=>(new HomeController())->Home(),
 
     //Admin
-    'admin'=>(new AdminProductController())->productList(),
+    'admin'=>(new AdminProductController())->show(),
 
     // Danh mục Admin
-    'admin/quan-ly-danh-muc'=>(new AdminCategoryController())->categoryList(),
+    'admin/danh-muc'=>(new AdminCategoryController())->show(),
+    'admin/form-them-danh-muc'=>(new AdminCategoryController())->formAddCategory(),
+    'admin/them-danh-muc'=>(new AdminCategoryController())->postCategory(),
+
 
     // Sản phẩm
-    'admin/quan-ly-san-pham'=>(new AdminProductController())->productList(),
+    'admin/san-pham'=>(new AdminProductController())->show(),
+    'admin/form-them-san-pham'=>(new AdminProductController())->formAddProduct(),
+    'admin/them-san-pham'=>(new AdminProductController())->postProduct(),
 
 
 };

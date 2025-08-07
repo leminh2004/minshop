@@ -10,14 +10,14 @@ class AdminCategory
 
     // Viết truy vấn danh sách sản phẩm 
 
-    public function getAllCategory()
+    public function getAll()
     {
         try {
             $sql = "SELECT * FROM categories";
             $stmt = $this->conn->prepare($sql);
             $stmt->execute();
             return $stmt->fetchAll();
-        } catch (Exception$e) {
+        } catch (Exception $e) {
             echo "Lỗi" . $e->getMessage();
         }
     }
