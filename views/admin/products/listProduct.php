@@ -59,7 +59,7 @@
                                             <td><?= $product['quantity']; ?></td>
                                             <td>
                                                 <a href="" class="btn btn-primary">Chi tiết</a>
-                                                <a href="" class="btn btn-warning">Sửa</a>
+                                                <a href="<?=BASE_URL . '?act=admin/form-sua-san-pham&id=' . $product['id']?>" class="btn btn-warning">Sửa</a>
                                                 <button class="btn btn-danger">Xóa</button>
                                             </td>
                                         </tr>

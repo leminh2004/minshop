@@ -11,11 +11,6 @@ class AdminProductController
         $this->modelCategory = new AdminCategory();
     }
 
-    public function Home()
-    {
-        echo "Đây là trang chủ";
-    }
-
     public function show()
     {
         $listProduct = $this->modelProduct->getAll();
@@ -31,7 +26,7 @@ class AdminProductController
 
     public function postProduct()
     {
-        var_dump($_POST);die();
+        // var_dump($_POST);die();
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $name = $_POST['name'] ?? '';
             $image = $_POST['image'] ?? '';
@@ -42,6 +37,7 @@ class AdminProductController
             $description = $_POST['description'] ?? '';
             $date = $_POST['date'] ?? '';
 
+            // if($erros)
             $this->modelProduct->create(
                 $name,
                 $image,
@@ -54,8 +50,48 @@ class AdminProductController
             );
         }
 
+        header('Location: ' . BASE_URL . '?act=admin/san-pham');
+        exit();
+    }
 
-        // header('Location: ' . BASE_URL . '?act=admin/san-pham');
+    public function formEditProduct()
+    {
+        $id = $_GET['id'];
+        $listCategory = $this->modelCategory->getAll();
+        $product = $this->modelProduct->getProduct($id);
+        require_once './views/admin/products/editProduct.php';
+    }
+
+        public function postEditProduct()
+    {   
+        
+        // var_dump($_POST);die();
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            $id = $_POST['id'];
+            $name = $_POST['name'] ?? '';
+            $image = $_POST['image'] ?? '';
+            $price = $_POST['price'] ?? '';
+            $discount = $_POST['discount'] ?? '';
+            $category_id = $_POST['category_id'] ?? '';
+            $quantity = $_POST['quantity'] ?? '';
+            $description = $_POST['description'] ?? '';
+            $date = $_POST['date'] ?? '';
+
+            // if($erros)
+            $this->modelProduct->update(
+                $id,
+                $name,
+                $image,
+                $price,
+                $discount,
+                $category_id,
+                $quantity,
+                $description,
+                $date
+            );
+        }
+
+        header('Location: ' . BASE_URL . '?act=admin/san-pham');
         exit();
     }
 }

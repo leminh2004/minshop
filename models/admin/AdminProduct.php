@@ -26,6 +26,23 @@ class AdminProduct
         }
     }
 
+    public function getProduct($id)
+    {
+        try {
+            $sql = "SELECT products.*, categories.name AS cate_name
+            FROM products
+            INNER JOIN categories
+            ON products.category_id = categories.id
+            WHERE products.id = :id";
+
+            $stmt = $this->conn->prepare($sql);
+            $stmt->execute(['id' => $id]);
+            return $stmt->fetch();
+        } catch (Exception $e) {
+            echo "Lỗi" . $e->getMessage();
+        }
+    }
+
     public function create($name, $image, $price, $discount, $category_id, $quantity, $description, $date)
     {
         try {
@@ -45,6 +62,39 @@ class AdminProduct
                 ':date' => $date
             ]);
             return $this->conn->lastInsertId();
+        } catch (Exception $e) {
+            echo "Lỗi" . $e->getMessage();
+        }
+    }
+
+    public function update($id, $name, $image, $price, $discount, $category_id, $quantity, $description, $date)
+    {
+        try {
+            $sql = "UPDATE products
+                    SET 
+                    name = :name,
+                    image = :image,
+                    price = :price,
+                    discount = :discount,
+                    category_id = :category_id,
+                    quantity = :quantity,
+                    description = :description,
+                    date = :date
+                    WHERE id = :id";
+
+            $stmt = $this->conn->prepare($sql);
+            $stmt->execute([
+                ':id' => $id,
+                ':name' => $name,
+                ':image' => $image,
+                ':price' => $price,
+                ':discount' => $discount,
+                ':category_id' => $category_id,
+                ':quantity' => $quantity,
+                ':description' => $description,
+                ':date' => $date
+            ]);
+            return true;
         } catch (Exception $e) {
             echo "Lỗi" . $e->getMessage();
         }

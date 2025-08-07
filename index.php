@@ -44,6 +44,8 @@ match ($act) {
     'admin/san-pham'=>(new AdminProductController())->show(),
     'admin/form-them-san-pham'=>(new AdminProductController())->formAddProduct(),
     'admin/them-san-pham'=>(new AdminProductController())->postProduct(),
+    'admin/form-sua-san-pham'=>(new AdminProductController())->formEditProduct(),
+    'admin/sua-san-pham'=>(new AdminProductController())->postEditProduct(),
 
 
 };
