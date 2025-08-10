@@ -1,14 +1,14 @@
 <!-- Header -->
-<?php include './views/admin/layout/header.php';?>
+<?php include './views/admin/layout/header.php'; ?>
 <!-- End header -->
 
 <!-- Navbar -->
- <?php include './views/admin/layout/navbar.php';?>
- <!-- End navbar -->
+<?php include './views/admin/layout/navbar.php'; ?>
+<!-- End navbar -->
 
- <!-- Sidebar -->
- <?php include './views/admin/layout/sidebar.php';?>
- <!-- End sidebar -->
+<!-- Sidebar -->
+<?php include './views/admin/layout/sidebar.php'; ?>
+<!-- End sidebar -->
 
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
@@ -29,20 +29,20 @@
             <div class="row">
                 <div class="col-12">
                     <div class="card">
-                        
+
                         <!-- /.card-header -->
                         <div class="card-body">
-                            <a href="<?= BASE_URL . '?act=admin/form-them-san-pham'?>" class="btn btn-primary">Thêm sản phẩm</a>
+                            <a href="<?= BASE_URL . '?act=admin/form-them-san-pham' ?>" class="btn btn-primary">Thêm sản phẩm</a>
 
                             <table id="example1" class="table table-bordered table-striped">
                                 <thead>
-                                    <tr>
+                                    <tr class="text-center">
                                         <th>STT</th>
                                         <th>Tên sản phẩm</th>
                                         <th>Hình ảnh</th>
                                         <th>Giá sản phẩm</th>
                                         <th>Giá khuyến mãi</th>
-                                        <th>Danh mục</th>
+                                        <th class="col-2.5">Danh mục</th>
                                         <th>Số lượng</th>
                                         <th>Hành động</th>
                                     </tr>
@@ -50,17 +50,23 @@
                                 <tbody>
                                     <?php foreach ($listProduct as $key => $product): ?>
                                         <tr>
-                                            <td><?= $key+1 ?></td>
-                                            <td><?= $product['name']; ?></td>
+                                            <td><?= $key + 1 ?></td>
+                                            <td class="text-truncate" style="max-width: 200px;"><?= $product['name']; ?></td>
                                             <td></td>
                                             <td><?= $product['price']; ?></td>
-                                            <td><?=$product['discount']; ?></td>
-                                            <td><?=$product['cate_name']; ?></td>
+                                            <td><?= $product['discount']; ?></td>
+                                            <td><?= $product['cate_name']; ?></td>
                                             <td><?= $product['quantity']; ?></td>
-                                            <td>
-                                                <a href="" class="btn btn-primary">Chi tiết</a>
-                                                <a href="<?=BASE_URL . '?act=admin/form-sua-san-pham&id=' . $product['id']?>" class="btn btn-warning">Sửa</a>
-                                                <button class="btn btn-danger">Xóa</button>
+                                            <td class="d-flex gap-1 ">
+                                                <a href="<?= BASE_URL . '?act=admin/chi-tiet-san-pham&id=' . $product['id']?> ">
+                                                    <button class="btn btn-success"><i class="far fa-eye"></i></button>
+                                                </a>
+                                                <a href="<?= BASE_URL . '?act=admin/form-sua-san-pham&id=' . $product['id'] ?>">
+                                                    <button class="btn btn-warning"><i class="fas fa-cogs"></i></button>
+                                                </a>
+                                                <a href="<?= BASE_URL . '?act=admin/xoa-san-pham&id=' . $product['id'] ?>" onclick="return confirm('Bạn có muốn xóa sản phẩm không?')">
+                                                    <button class="btn btn-danger"><i class="far fa-trash-alt"></i></button>
+                                                </a>
                                             </td>
                                         </tr>
                                     <?php endforeach ?>
@@ -93,9 +99,9 @@
 </div>
 <!-- /.content-wrapper -->
 
- <!-- Footer -->
- <?php include './views/admin/layout/footer.php';?>
- <!-- End Footer -->
+<!-- Footer -->
+<?php include './views/admin/layout/footer.php'; ?>
+<!-- End Footer -->
 
 <!-- Page specific script -->
 <script>

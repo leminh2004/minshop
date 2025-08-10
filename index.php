@@ -46,6 +46,6 @@ match ($act) {
     'admin/them-san-pham'=>(new AdminProductController())->postProduct(),
     'admin/form-sua-san-pham'=>(new AdminProductController())->formEditProduct(),
     'admin/sua-san-pham'=>(new AdminProductController())->postEditProduct(),
-
+    'admin/xoa-san-pham'=>(new AdminProductController())->delete(),
 
 };

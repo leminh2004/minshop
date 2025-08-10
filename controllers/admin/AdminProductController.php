@@ -24,6 +24,14 @@ class AdminProductController
         require_once './views/admin/products/addProduct.php';
     }
 
+    public function deitalProduct()
+    {
+        $id = $_GET['id'];
+        $product = $this->modelProduct->getProduct($id);
+        require_once './views/admin/products/detailProduct.php';
+
+    }
+
     public function postProduct()
     {
         // var_dump($_POST);die();
@@ -62,9 +70,9 @@ class AdminProductController
         require_once './views/admin/products/editProduct.php';
     }
 
-        public function postEditProduct()
-    {   
-        
+    public function postEditProduct()
+    {
+
         // var_dump($_POST);die();
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $id = $_POST['id'];
@@ -92,6 +100,16 @@ class AdminProductController
         }
 
         header('Location: ' . BASE_URL . '?act=admin/san-pham');
+        exit();
+    }
+
+    public function delete()
+    {
+        $id = $_GET['id'];
+        $product = $this->modelProduct->getProduct($id);
+        deleteFile($product['image']);
+        $this->modelProduct->destroy($id);
+        header('Location:' . BASE_URL . '?act=admin/san-pham');
         exit();
     }
 }
