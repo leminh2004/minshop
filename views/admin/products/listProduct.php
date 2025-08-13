@@ -52,7 +52,7 @@
                                         <tr>
                                             <td><?= $key + 1 ?></td>
                                             <td class="text-truncate" style="max-width: 200px;"><?= $product['name']; ?></td>
-                                            <td></td>
+                                            <td><img src="<?= BASE_URL . $product['image']?>" width="100px" alt=""></td>
                                             <td><?= $product['price']; ?></td>
                                             <td><?= $product['discount']; ?></td>
                                             <td><?= $product['cate_name']; ?></td>
