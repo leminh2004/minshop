@@ -34,6 +34,7 @@ class AdminProductController
     public function postProduct()
     {
         // var_dump($_POST);die();
+        // Kiểm tra xem dữ liệu đã post lên chưa
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $name = $_POST['name'] ?? '';
             $price = $_POST['price'] ?? '';
@@ -42,6 +43,8 @@ class AdminProductController
             $quantity = $_POST['quantity'] ?? '';
             $description = $_POST['description'] ?? '';
             $date = $_POST['date'] ?? '';
+
+            // Validate
             $errors = [];
             if (empty($name)) {
                 $errors['name'] = "Tên không được để trống";
@@ -112,12 +115,19 @@ class AdminProductController
 
     public function postEditProduct()
     {
-
         // var_dump($_POST);die();
+       
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $id = $_POST['id'];
+
+            // Lấy ra file hình ảnh
+             $product = $this->modelProduct->getProduct($id);
+             $old_file = $product['image'];
+            //  var_dump($old_file);die;
+
+            // Lấy ra dữ liệu đã post lên
             $name = $_POST['name'] ?? '';
-            $image = $_POST['image'] ?? '';
+            $new_file = $_FILES['image'] ?? null;
             $price = $_POST['price'] ?? '';
             $discount = $_POST['discount'] ?? '';
             $category_id = $_POST['category_id'] ?? '';
@@ -125,22 +135,70 @@ class AdminProductController
             $description = $_POST['description'] ?? '';
             $date = $_POST['date'] ?? '';
 
-            // if($erros)
-            $this->modelProduct->update(
-                $id,
-                $name,
-                $image,
-                $price,
-                $discount,
-                $category_id,
-                $quantity,
-                $description,
-                $date
-            );
-        }
+            // Validate
+            $errors = [];
+            if (empty($name)) {
+                $errors['name'] = "Tên không được để trống";
+            }
+            if (empty($price)) {
+                $errors['price'] = "Giá sản phẩm được để trống";
+            }
 
-        header('Location: ' . BASE_URL . '?act=admin/san-pham');
-        exit();
+            if (!empty($discount)) {
+                if ($discount <= 0) {
+                    $errors['discount'] = "Giá khuyến mãi phải lớn hơn 0";
+                } elseif ($price < $discount) {
+                    $errors['discount'] = "Giá giá khuyến mãi phải lớn hơn giá sản phẩm";
+                }
+            }
+
+            if (empty($category_id)) {
+                $errors['category'] = "Vui lòng chọn danh mục";
+            }
+
+            if (empty($quantity)) {
+                $errors['quantity'] = "Số lượng không được để trống";
+            }
+            if (empty($date)) {
+                $errors['date'] = "Ngày nhập không được để trống";
+            }
+            if (empty($description)) {
+                $errors['description'] = "Mô tả không được để trống";
+            }
+
+            $_SESSION['error'] = $errors;
+            if (empty($errors)) {
+
+                // Kiểm tra ảnh
+                if(isset($new_file) && $new_file['error']  == UPLOAD_ERR_OK){
+                    $image = uploadFile($new_file, './uploads/');
+                    if(!empty($old_file)) {
+                        deleteFile($old_file);
+                    }
+                } else{
+                    $image = $old_file;
+                }
+                // var_dump($image);die;
+
+                $this->modelProduct->update(
+                    $id,
+                    $name,
+                    $image,
+                    $price,
+                    $discount,
+                    $category_id,
+                    $quantity,
+                    $description,
+                    $date
+                );
+                header('Location: ' . BASE_URL . '?act=admin/san-pham');
+                exit();
+            } else {
+
+                $_SESSION['flash'] = true;
+                header('Location:' . BASE_URL . '?act=admin/form-sua-san-pham&id=' . $id);
+            }
+        }
     }
 
     public function delete()
