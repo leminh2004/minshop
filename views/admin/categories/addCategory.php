@@ -8,13 +8,16 @@
                     <h3 class="mb-0">Thêm danh mục</h3>
                 </div>
                 <div class="card-body">
-                    <form action="<?= BASE_URL . '?act=admin/them-danh-muc'?>" method="POST">
+                    <form action="<?= BASE_URL . '?act=admin/them-danh-muc' ?>" method="POST">
                         <div class="form-group mb-3">
                             <label class="form-label">Tên danh mục</label>
-                            <input type="text" class="form-control" name="name" placeholder="Tên sản phẩm">
+                            <input type="text" class="form-control" name="name" value="<?= $_SESSION['old']['name'] ?? '' ?>" placeholder="Tên sản phẩm">
+                            <?php if (isset($_SESSION['error']['name'])) { ?>
+                                <span class="text-danger"><?= $_SESSION['error']['name'] ?></span>
+                            <?php } ?>
                         </div>
                         <button type="submit" class="btn btn-primary">Thêm danh mục</button>
-                        <a href="<?= BASE_URL . '?act=admin/san-pham'?>" class="btn btn-secondary">Quản lý danh mục</a>
+                        <a href="<?= BASE_URL . '?act=admin/danh-muc' ?>" class="btn btn-secondary">Quản lý danh mục</a>
                     </form>
                 </div>
             </div>
@@ -23,3 +26,5 @@
 </div>
 </div>
 </body>
+
+</html>

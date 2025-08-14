@@ -29,7 +29,7 @@
             <div class="row">
                 <div class="col-12">
                     <div class="card">
-
+                        <a href="<?=BASE_URL . '?act=admin/form-them-danh-muc'?>" class="btn btn-primary">Thêm danh mục</a>
                         <!-- /.card-header -->
                         <div class="card-body">
                             <table id="example1" class="table table-bordered table-striped">
@@ -46,8 +46,8 @@
                                             <td><?= $key + 1 ?></td>
                                             <td><?= $category['name'] ?></td>
                                             <td>
-                                                <a href="" class="btn btn-warning">Sửa</a>
-                                                <button class="btn btn-danger">Xóa</button>
+                                                <a href="<?=BASE_URL . '?act=admin/form-sua-danh-muc&id='. $category['id']?>" class="btn btn-warning">Sửa</a>
+                                                <a href="<?=BASE_URL . '?act=admin/xoa-danh-muc&id='. $category['id']?>"><button class="btn btn-danger" onclick="return confirm('Bạn có muốn xóa không?')">Xóa</button></a>
                                             </td>
                                         </tr>
                                     <?php endforeach ?>

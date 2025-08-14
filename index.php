@@ -39,6 +39,9 @@ match ($act) {
     'admin/danh-muc'=>(new AdminCategoryController())->show(),
     'admin/form-them-danh-muc'=>(new AdminCategoryController())->formAddCategory(),
     'admin/them-danh-muc'=>(new AdminCategoryController())->postCategory(),
+    'admin/form-sua-danh-muc'=>(new AdminCategoryController())->editCate(),
+    'admin/sua-danh-muc'=>(new AdminCategoryController())->postEditCate(),
+    'admin/xoa-danh-muc'=>(new AdminCategoryController())->delete(),
 
 
     // Sản phẩm
