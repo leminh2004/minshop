@@ -24,7 +24,7 @@ class AdminProductController
         require_once './views/admin/products/addProduct.php';
     }
 
-    public function deitalProduct()
+    public function detailProduct()
     {
         $id = $_GET['id'];
         $product = $this->modelProduct->getProduct($id);

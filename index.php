@@ -43,6 +43,7 @@ match ($act) {
 
     // Sản phẩm
     'admin/san-pham'=>(new AdminProductController())->show(),
+    'admin/chi-tiet-san-pham'=>(new AdminProductController())->detailProduct(),
     'admin/form-them-san-pham'=>(new AdminProductController())->formAddProduct(),
     'admin/them-san-pham'=>(new AdminProductController())->postProduct(),
     'admin/form-sua-san-pham'=>(new AdminProductController())->formEditProduct(),
