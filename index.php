@@ -33,7 +33,7 @@ match ($act) {
     '/'=>(new HomeController())->Home(),
 
     //Admin
-    'admin'=>(new AdminProductController())->show(),
+    'admin' => require_once "./views/admin/layout/index.php",
 
     // Danh mục Admin
     'admin/danh-muc'=>(new AdminCategoryController())->show(),
