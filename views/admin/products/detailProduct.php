@@ -43,7 +43,7 @@
                                     <h1 class="mb-3"><?= $product['name'] ?></h1>
                                     <p>Giá sản phẩm: <?= $product['price'] ?></p>
                                     <p>Giá khuyến mã: <?= $product['discount'] ?></p>
-                                    <p>Danh mục: <?= $product['category_id'] ?></p>
+                                    <p>Danh mục: <?= $product['cate_name'] ?></p>
                                     <p>Số lượng: <?= $product['quantity'] ?></p>
                                     <p>Ngày nhập: <?= $product['date'] ?></p>
 

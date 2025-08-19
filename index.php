@@ -21,6 +21,7 @@ require_once './models/admin/AdminCategory.php';
 
 // User
 require_once './models/user/Product.php';
+require_once './models/user/Category.php';
 
 // Route
 $act = $_GET['act'] ?? '/';
