@@ -1,7 +1,8 @@
 <?php
 
 // Kết nối CSDL qua PDO
-function connectDB() {
+function connectDB()
+{
     // Kết nối CSDL
     $host = DB_HOST;
     $port = DB_PORT;
@@ -15,14 +16,15 @@ function connectDB() {
 
         // cài đặt chế độ trả dữ liệu
         $conn->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
-    
+
         return $conn;
     } catch (PDOException $e) {
         echo ("Connection failed: " . $e->getMessage());
     }
 }
 
-function uploadFile($file, $folderSave){
+function uploadFile($file, $folderSave)
+{
     $file_upload = $file;
     $pathStorage = $folderSave . rand(10000, 99999) . $file_upload['name'];
 
@@ -35,9 +37,17 @@ function uploadFile($file, $folderSave){
     return null;
 }
 
-function deleteFile($file){
+function deleteFile($file)
+{
     $pathDelete = PATH_ROOT . $file;
     if (file_exists($pathDelete)) {
         unlink($pathDelete); // Hàm unlink dùng để xóa file
+    }
+}
+
+function formatPrice($number, $currency = '₫')
+{
+    if (!empty($number)) {
+        return number_format($number, 0, ',', '.') . ' ' . $currency;
     }
 }

@@ -25,8 +25,8 @@
                             </div>
                             <div class="header-info-right">
                                 <ul>
-                                    <li><a href="">Đăng nhập</a></li>
-                                    <li><a href="">Đăng ký</a></li>
+                                    <li><a href="<?=BASE_URL . '?act=login'?>">Đăng nhập</a></li>
+                                    <li><a href="<?=BASE_URL . '?act=register'?>">Đăng ký</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -48,7 +48,7 @@
                                 <nav>
                                     <ul id="navigation">
                                         <li><a href="<?= BASE_URL . '' ?>">Trang chủ</a></li>
-                                        <li><a href="Catagori.html">Danh mục</a></li>
+                                        <li><a href="<?= BASE_URL . '?act=danh-sach-san-pham' ?>">Sản phẩm</a></li>
                                         <li class="hot"><a href="#">Sản phẩm mới nhất</a></li>
                                         <li><a href="about.html">Giới thiệu</a></li>
                                         <li><a href="contact.html">Liên hệ</a></li>
@@ -71,7 +71,7 @@
                                         <a href="cart.html"><i class="fas fa-shopping-cart"></i></a>
                                     </div>
                                 </li>
-                                <li class="d-none d-lg-block"> <a href="#" class="btn header-btn">Đăng nhập</a></li>
+                                <li class="d-none d-lg-block"> <a href="<?=BASE_URL . '?act=login'?>" class="btn btn-primary header-btn">Đăng nhập</a></li>
                             </ul>
                         </div>
                         <!-- Mobile Menu -->

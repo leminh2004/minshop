@@ -9,6 +9,9 @@
         <link rel="manifest" href="site.webmanifest">
 		<!-- <link rel="shortcut icon" type="image/x-icon" href="./assets/user/assets/img/favicon.ico"> -->
 
+        <!-- FontAwesome -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+
 		<!-- CSS here -->
             <link rel="stylesheet" href="./assets/user/assets/css/bootstrap.min.css">
             <link rel="stylesheet" href="./assets/user/assets/css/owl.carousel.min.css">

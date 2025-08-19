@@ -16,7 +16,8 @@ class AdminProduct
             $sql = "SELECT products.*, categories.name AS cate_name
             FROM products
             JOIN categories
-            ON products.category_id = categories.id";
+            ON products.category_id = categories.id
+            ORDER BY products.id DESC";
 
             $stmt = $this->conn->prepare($sql);
             $stmt->execute();
@@ -46,6 +47,7 @@ class AdminProduct
     public function create($name, $image, $price, $discount, $category_id, $quantity, $description, $date)
     {
         try {
+            $discount = !empty($discount) ? $discount : NULL;
             $sql = "INSERT INTO products (`name`,`image`, `price`, `discount`, `category_id`, `quantity`, `description`, `date`)
                     VALUES (:name, :image, :price, :discount, :category_id, :quantity, :description, :date)";
 
@@ -70,6 +72,7 @@ class AdminProduct
     public function update($id, $name, $image, $price, $discount, $category_id, $quantity, $description, $date)
     {
         try {
+            $discount = !empty($discount) ? $discount : NULL;
             $sql = "UPDATE products
                     SET 
                     name = :name,

@@ -31,27 +31,35 @@ $act = $_GET['act'] ?? '/';
 
 match ($act) {
     // User - trang chủ
-    '/'=>(new HomeController())->Home(),
+    '/' => (new HomeController())->Home(),
+    'danh-sach-san-pham' => (new HomeController())->getAllProduct(),
+    'san-pham' => (new HomeController())->detail(),
+
+    // Login user
+    'login' => (new HomeController())->login(),
 
     //Admin
     'admin' => require_once "./views/admin/layout/index.php",
 
     // Danh mục Admin
-    'admin/danh-muc'=>(new AdminCategoryController())->show(),
-    'admin/form-them-danh-muc'=>(new AdminCategoryController())->formAddCategory(),
-    'admin/them-danh-muc'=>(new AdminCategoryController())->postCategory(),
-    'admin/form-sua-danh-muc'=>(new AdminCategoryController())->editCate(),
-    'admin/sua-danh-muc'=>(new AdminCategoryController())->postEditCate(),
-    'admin/xoa-danh-muc'=>(new AdminCategoryController())->delete(),
-
+    'admin/danh-muc' => (new AdminCategoryController())->show(),
+    'admin/form-them-danh-muc' => (new AdminCategoryController())->formAddCategory(),
+    'admin/them-danh-muc' => (new AdminCategoryController())->postCategory(),
+    'admin/form-sua-danh-muc' => (new AdminCategoryController())->editCate(),
+    'admin/sua-danh-muc' => (new AdminCategoryController())->postEditCate(),
+    'admin/xoa-danh-muc' => (new AdminCategoryController())->delete(),
 
     // Sản phẩm
-    'admin/san-pham'=>(new AdminProductController())->show(),
-    'admin/chi-tiet-san-pham'=>(new AdminProductController())->detailProduct(),
-    'admin/form-them-san-pham'=>(new AdminProductController())->formAddProduct(),
-    'admin/them-san-pham'=>(new AdminProductController())->postProduct(),
-    'admin/form-sua-san-pham'=>(new AdminProductController())->formEditProduct(),
-    'admin/sua-san-pham'=>(new AdminProductController())->postEditProduct(),
-    'admin/xoa-san-pham'=>(new AdminProductController())->delete(),
+    'admin/san-pham' => (new AdminProductController())->show(),
+    'admin/chi-tiet-san-pham' => (new AdminProductController())->detailProduct(),
+    'admin/form-them-san-pham' => (new AdminProductController())->formAddProduct(),
+    'admin/them-san-pham' => (new AdminProductController())->postProduct(),
+    'admin/form-sua-san-pham' => (new AdminProductController())->formEditProduct(),
+    'admin/sua-san-pham' => (new AdminProductController())->postEditProduct(),
+    'admin/xoa-san-pham' => (new AdminProductController())->delete(),
+
+    // Login Admin
+
+
 
 };
