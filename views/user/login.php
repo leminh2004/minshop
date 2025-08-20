@@ -15,9 +15,9 @@
                     <div class="login_part_form_iner">
                         <h3>Chào mừng trở lại<br>
                             Vui lòng đăng nhập ngay</h3>
-                        <form class="row contact_form" action="#" method="post" novalidate="novalidate">
+                        <form class="row contact_form" action="<?=BASE_URL . '?act=check-login' ?>" method="post" novalidate="novalidate">
                             <div class="col-md-12 form-group p_star">
-                                <input type="text" class="form-control" id="name" name="name" value=""
+                                <input type="text" class="form-control" name="email" value=""
                                     placeholder="Username">
                             </div>
                             <div class="col-md-12 form-group p_star">

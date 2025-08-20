@@ -34,7 +34,7 @@
                 <!-- Nút hành động -->
                 <div class="d-flex">
                     <!-- Nút thêm vào giỏ hàng -->
-                    <button class="btn btn-outline-primary me-3 d-flex align-items-center px-4 py-2">
+                    <button class="btn btn-outline-primary me-3 d-flex align-items-center">
                         <i class="bi bi-cart-plus me-2"></i> Thêm Vào Giỏ Hàng
                     </button>
                 </div>

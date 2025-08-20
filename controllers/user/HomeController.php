@@ -3,11 +3,13 @@ class HomeController
 {
     public $modelProduct;
     public $modelCategory;
+    public $modelUser;
 
     public function __construct()
     {
         $this->modelProduct = new Product();
         $this->modelCategory = new Category();
+        $this->modelUser = new User();
     }
 
     public function home()
@@ -22,7 +24,7 @@ class HomeController
         require_once './views/user/index.php';
     }
 
-        public function getAllProduct()
+    public function getAllProduct()
     {
         $products = $this->modelProduct->all();
         require_once './views/user/products.php';
@@ -36,8 +38,87 @@ class HomeController
         require_once './views/user/detail.php';
     }
 
-    public function login()
+    public function formRegister()
+    {
+        require_once './views/user/register.php';
+    }
+
+    public function postRegister()
+    {
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            $name = $_POST['name'];
+            $email = $_POST['email'];
+            $password = $_POST['password'];
+
+            $checkEmail = $this->modelUser->checkEmail($email);
+
+            $errors = [];
+            if (empty($name)) {
+                $errors['name'] = "Vui lòng nhập tên";
+            }
+            if (empty($email)) {
+                $errors['email'] = "Vui lòng nhập email";
+            }elseif(!filter_var($email, FILTER_VALIDATE_EMAIL)){
+                $errors['email'] = "Vui lòng nhập đúng định dạng";
+            }elseif(!$checkEmail){
+                $errors['email'] = "Email đã tồn tại";
+            }
+            if (empty($password)) {
+                $errors['password'] = "Vui lòng nhập mật khẩu";
+            }
+            $_SESSION['error'] = $errors;
+
+            // var_dump($errors['email']);die;
+
+            if(empty($errors))
+            {
+                $this->modelUser->register($name, $email, $password);
+                unset($_SESSION['old']);
+                unset($_SESSION['error']);
+                header('Location:' . '?act=login');
+                exit();
+            }else{
+                $_SESSION['old'] = $_POST;
+                $_SESSION['flash'] = true;
+                header('Location:' . '?act=register');
+            }
+        }
+    }
+
+    public function formLogin()
     {
         require_once './views/user/login.php';
+        exit();
+    }
+
+    public function postLogin()
+    {
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            $email = $_POST['email'];
+            $password = $_POST['password'];
+            $user = $this->modelUser->login($email,  $password);
+            // var_dump($email);
+
+
+            if ($user['email'] == $email) {
+                $_SESSION['user'] = $user;
+                // var_dump($_SESSION['user']);
+                // die;
+                header('Location:' . BASE_URL);
+                exit();
+            } else {
+                $_SESSION['error'] = $user;
+                $_SESSION['flash'] = true;
+                header('Location:' . BASE_URL . '?act=login');
+            }
+        }
+    }
+
+    public function logout()
+    {
+        if ($_SESSION['user']) {
+            unset($_SESSION['user']);
+            header('Location:' . BASE_URL);
+        }
     }
 }

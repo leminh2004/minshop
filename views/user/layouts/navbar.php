@@ -25,8 +25,22 @@
                             </div>
                             <div class="header-info-right">
                                 <ul>
-                                    <li><a href="<?=BASE_URL . '?act=login'?>">Đăng nhập</a></li>
-                                    <li><a href="<?=BASE_URL . '?act=register'?>">Đăng ký</a></li>
+                                    <?php if (isset($_SESSION['user'])): ?>
+                                        <?php if ($_SESSION['user']['role'] == 0 || $_SESSION['user']['role'] == 1): ?>
+                                            <li><a href="">Xin chào, <?= $_SESSION['user']['name'] ?></a></li>
+                                            <li><a href="<?=BASE_URL. '?act=admin'?>">Vào trang quản trị viên</a></li>
+                                            <li><a href="<?= BASE_URL . '?act=logout' ?>" onclick="return confirm('Bạn có muốn đăng xuất?')">Đăng xuất</a></li>
+                                        <?php elseif ($_SESSION['user']['role'] == 2): ?>
+                                            <li><a href="">Xin chào, <?= $_SESSION['user']['name'] ?></a></li>
+                                            <li><a href="<?= BASE_URL . '?act=logout' ?>" onclick="return confirm('Bạn có muốn đăng xuất?')">Đăng xuất</a></li>
+                                        <?php else: ?>
+                                            <li><a href="">Xin chào, <?= $_SESSION['user']['name'] ?></a></li>
+                                            <li><a href="<?= BASE_URL . '?act=logout' ?>" onclick="return confirm('Bạn có muốn đăng xuất?')">Đăng xuất</a></li>
+                                        <?php endif ?>
+                                    <?php else: ?>
+                                        <li><a href="<?= BASE_URL . '?act=login' ?>">Đăng nhập</a></li>
+                                        <li><a href="<?= BASE_URL . '?act=register' ?>">Đăng ký</a></li>
+                                    <?php endif; ?>
                                 </ul>
                             </div>
                         </div>
@@ -71,8 +85,13 @@
                                         <a href="cart.html"><i class="fas fa-shopping-cart"></i></a>
                                     </div>
                                 </li>
-                                <li class="d-none d-lg-block"> <a href="<?=BASE_URL . '?act=login'?>" class="btn btn-primary header-btn">Đăng nhập</a></li>
-                            </ul>
+                                <ul>
+                                    <?php if (isset($_SESSION['user'])): ?>
+                                    <?php else: ?>
+                                        <li class="d-none d-lg-block"> <a href="<?= BASE_URL . '?act=login' ?>" class="btn btn-primary header-btn">Đăng nhập</a></li>
+                                    <?php endif; ?>
+
+                                </ul>
                         </div>
                         <!-- Mobile Menu -->
                         <div class="col-12">

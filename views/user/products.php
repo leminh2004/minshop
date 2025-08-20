@@ -41,7 +41,7 @@
                                         </div>
                                     </div>
                                     <div class="product-caption">
-                                        <h4><a href="<?=BASE_URL . '?act=products&id=' . $pro['id']?>"><?= $pro['name'] ?></a></h4>
+                                        <h4><a href="<?=BASE_URL . '?act=san-pham&id=' . $pro['id']?>"><?= $pro['name'] ?></a></h4>
                                         <div class="price">
                                             <ul>
                                                 <li><?= formatPrice($pro['price']) ?></li>

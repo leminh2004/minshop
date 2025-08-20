@@ -33,7 +33,7 @@
                 </li>
 
                 <li class="nav-item">
-                    <a href="../widgets.html" class="nav-link">
+                    <a href="<?= BASE_URL .'?act=admin/tai-khoan' ?>" class="nav-link">
                         <i class="nav-icon fas fa-user"></i>
                         <p>
                             Quản lý tài khoản

@@ -9,6 +9,7 @@ require_once './commons/function.php'; // Hàm hỗ trợ
 // Admin
 require_once './controllers/admin/AdminProductController.php';
 require_once './controllers/admin/AdminCategoryController.php';
+require_once './controllers/admin/AdminUserController.php';
 
 // User
 require_once './controllers/user/HomeController.php';
@@ -17,15 +18,30 @@ require_once './controllers/user/HomeController.php';
 // Admin
 require_once './models/admin/AdminProduct.php';
 require_once './models/admin/AdminCategory.php';
+require_once './models/admin/AdminUser.php';
 
 
 // User
 require_once './models/user/Product.php';
 require_once './models/user/Category.php';
+require_once './models/user/User.php';
 
 // Route
 $act = $_GET['act'] ?? '/';
 
+if (isset($_GET['act']) && strpos($_GET['act'], 'admin') === 0) {
+    if (!isset($_SESSION['user'])) {
+        // chưa đăng nhập thì về login
+        header("Location: " . BASE_URL . "?act=login");
+        exit();
+    } else {
+        // đã đăng nhập thì kiểm tra role (chỉ role 0 và 1 mới vào được admin)
+        if ($_SESSION['user']['role'] != 0 && $_SESSION['user']['role'] != 1) {
+            header("Location: " . BASE_URL);
+            exit();
+        }
+    }
+}
 
 // Để bảo bảo tính chất chỉ gọi 1 hàm Controller để xử lý request thì mình sử dụng match
 
@@ -35,9 +51,16 @@ match ($act) {
     'danh-sach-san-pham' => (new HomeController())->getAllProduct(),
     'san-pham' => (new HomeController())->detail(),
 
-    // Login user
-    'login' => (new HomeController())->login(),
+    // Register
+    'register' => (new HomeController())->formRegister(),
+    'check-register' => (new HomeController())->postRegister(),
 
+    // Login user
+    'login' => (new HomeController())->formLogin(),
+    'check-login' => (new HomeController())->postLogin(),
+
+    // Logout user
+    'logout' => (new HomeController())->logout(),
     //Admin
     'admin' => require_once "./views/admin/layout/index.php",
 
@@ -49,7 +72,7 @@ match ($act) {
     'admin/sua-danh-muc' => (new AdminCategoryController())->postEditCate(),
     'admin/xoa-danh-muc' => (new AdminCategoryController())->delete(),
 
-    // Sản phẩm
+    // Sản phẩm Admin
     'admin/san-pham' => (new AdminProductController())->show(),
     'admin/chi-tiet-san-pham' => (new AdminProductController())->detailProduct(),
     'admin/form-them-san-pham' => (new AdminProductController())->formAddProduct(),
@@ -58,8 +81,13 @@ match ($act) {
     'admin/sua-san-pham' => (new AdminProductController())->postEditProduct(),
     'admin/xoa-san-pham' => (new AdminProductController())->delete(),
 
-    // Login Admin
-
-
-
+    // Tài khoản admin
+    'admin/tai-khoan' => (new AdminUserController())->show(),
+    'admin/form-them-tai-khoan' => (new AdminUserController())->formAddUser(),
+    'admin/them-tai-khoan' => (new AdminUserController())->postUser(),
+    'admin/form-sua-tai-khoan' => (new AdminUserController())->formEditUser(),
+    'admin/sua-tai-khoan' => (new AdminUserController())->postEditUser(),
+    'admin/form-doi-mat-khau' => (new AdminUserController())->formChangePass(),
+    'admin/doi-mat-khau' => (new AdminUserController())->postChangePass(),
+    'admin/xoa-tai-khoan' => (new AdminUserController())->delete(),
 };
