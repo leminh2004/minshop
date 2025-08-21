@@ -50,20 +50,42 @@
         <!-- Bình luận -->
         <div class="mt-5">
             <h4>Bình luận</h4>
-            <form method="post" action="">
+            <form action="<?= BASE_URL . '?act=post-comment' ?>" method="POST">
                 <div class="mb-3">
-                    <textarea class="form-control" name="comment" rows="3" placeholder="Nhập bình luận của bạn..."></textarea>
+                    <input type="hidden" name="product_id" value="<?= $product['id'] ?>">
+                    <textarea class="form-control" name="content" rows="3" placeholder="Nhập bình luận của bạn..."></textarea>
+                    <?php if (isset($_SESSION['error']['content'])): ?>
+                        <span class="text_danger"><?= $_SESSION['error']['content'] ?></span>
+                    <?php endif ?>
                 </div>
-                <button type="submit" class="btn btn-primary">Gửi bình luận</button>
+                <button type="submit" id="comment" class="btn btn-primary">Gửi bình luận</button>
             </form>
-
+            <!-- Modal Bootstrap -->
+            <div class="modal fade" id="loginModal" tabindex="-1">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Vui lòng đăng nhập</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                        </div>
+                        <div class="modal-body">
+                            <p>Bạn cần đăng nhập để bình luận.</p>
+                            <a href="?act=login" class="btn btn-success">Đăng nhập ngay</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <div class="mt-4">
                 <?php if (!empty($comments)) { ?>
                     <?php foreach ($comments as $cmt) { ?>
-                        <div class="border p-2 mb-2">
-                            <strong><?= $cmt['user'] ?></strong> <br>
-                            <span><?= $cmt['content'] ?></span>
-                        </div>
+
+                        <?php if ($cmt['active'] == 1): ?>
+                            <div class="border p-2 mb-2">
+                                <strong><i><?= $cmt['user_name'] ?></i></strong> <br>
+                                <i><?= $cmt['content'] ?></i>
+                            </div>
+                        <?php endif; ?>
+
                     <?php } ?>
                 <?php } else { ?>
                     <p class="text-muted">Chưa có bình luận nào.</p>
@@ -103,3 +125,16 @@
 
 <!-- Footer -->
 <?php include './views/user/layouts/footer.php'; ?>
+<script>
+    // JS kiểm tra đăng nhập
+    var isLoggedIn = <?php echo isset($_SESSION['user']) ? 'true' : 'false'; ?>;
+
+    document.getElementById("comment").addEventListener("click", function(e) {
+        if (!isLoggedIn) {
+            e.preventDefault();
+            var myModal = new bootstrap.Modal(document.getElementById('loginModal'));
+            myModal.show();
+        }
+        // Nếu đã đăng nhập thì KHÔNG cần redirect, để form tự submit
+    });
+</script>

@@ -4,12 +4,14 @@ class HomeController
     public $modelProduct;
     public $modelCategory;
     public $modelUser;
+    public $modelCMT;
 
     public function __construct()
     {
         $this->modelProduct = new Product();
         $this->modelCategory = new Category();
         $this->modelUser = new User();
+        $this->modelCMT = new Comment();
     }
 
     public function home()
@@ -35,7 +37,36 @@ class HomeController
         $id = $_GET['id'];
         $product = $this->modelProduct->find($id);
         $featuredProduct = $this->modelProduct->featured();
+        $comments = $this->modelCMT->show($id,);
         require_once './views/user/detail.php';
+    }
+
+    public function postCMT()
+    {
+        
+        $user_id = $_SESSION['user']['id'];
+        if($_SERVER['REQUEST_METHOD'] == 'POST'){
+            $content = $_POST['content'];
+            $product_id  = $_POST['product_id'];
+            $errors = [];
+            if(empty($content)){
+                $errors['content'] = "Vui lòng nhập nội dung";
+            }
+            $_SESSION['error'] = $errors;
+            
+            // var_dump($errors);die;
+            if(empty($errors)){
+                $test = $this->modelCMT->post($content, $user_id, $product_id);
+                //  var_dump($test);die;
+                unset($_SESSION['error']);
+                header('Location:' . BASE_URL . '?act=san-pham&id=' . $product_id);
+            }else{
+                $_SESSION['flash'] = true;
+                header('Location:' . BASE_URL . '?act=san-pham&id=' . $product_id);
+
+            }
+        }
+
     }
 
     public function formRegister()

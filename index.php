@@ -25,9 +25,17 @@ require_once './models/admin/AdminUser.php';
 require_once './models/user/Product.php';
 require_once './models/user/Category.php';
 require_once './models/user/User.php';
+require_once './models/user/Comment.php';
 
 // Route
 $act = $_GET['act'] ?? '/';
+
+// Nếu đã login thì chặn truy cập lại login/register
+if ((isset($_GET['act']) && ($_GET['act'] == 'login' || $_GET['act'] == 'register'))
+    && isset($_SESSION['user'])) {
+    header("Location: " . BASE_URL);
+    exit();
+}
 
 if (isset($_GET['act']) && strpos($_GET['act'], 'admin') === 0) {
     if (!isset($_SESSION['user'])) {
@@ -50,6 +58,9 @@ match ($act) {
     '/' => (new HomeController())->Home(),
     'danh-sach-san-pham' => (new HomeController())->getAllProduct(),
     'san-pham' => (new HomeController())->detail(),
+
+    // Bình luận
+    'post-comment' => (new HomeController())->postCMT(),
 
     // Register
     'register' => (new HomeController())->formRegister(),
