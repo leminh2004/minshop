@@ -10,6 +10,7 @@ require_once './commons/function.php'; // Hàm hỗ trợ
 require_once './controllers/admin/AdminProductController.php';
 require_once './controllers/admin/AdminCategoryController.php';
 require_once './controllers/admin/AdminUserController.php';
+require_once './controllers/admin/AdminCommentController.php';
 
 // User
 require_once './controllers/user/HomeController.php';
@@ -19,6 +20,7 @@ require_once './controllers/user/HomeController.php';
 require_once './models/admin/AdminProduct.php';
 require_once './models/admin/AdminCategory.php';
 require_once './models/admin/AdminUser.php';
+require_once './models/admin/AdminComment.php';
 
 
 // User
@@ -101,4 +103,10 @@ match ($act) {
     'admin/form-doi-mat-khau' => (new AdminUserController())->formChangePass(),
     'admin/doi-mat-khau' => (new AdminUserController())->postChangePass(),
     'admin/xoa-tai-khoan' => (new AdminUserController())->delete(),
+
+    // Quản lý bình luận
+    'admin/binh-luan' => (new AdminCommentController())->show(),
+    'admin/chi-tiet-binh-luan' => (new AdminCommentController())->find(),
+    'admin/form-sua-binh-luan' => (new AdminCommentController())->formActive(),
+    'admin/sua-binh-luan' => (new AdminCommentController())->postActive(),
 };

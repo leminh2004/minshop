@@ -1,6 +1,6 @@
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <a href="<?= BASE_URL .'?act=admin' ?>" class="brand-link text-center">
+    <a href="<?= BASE_URL . '?act=admin' ?>" class="brand-link text-center">
         <img src="./assets/admin/dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
         <span class="brand-text font-weight-light">ADMIN</span>
     </a>
@@ -15,7 +15,7 @@
                with font-awesome or any other icon font library -->
 
                 <li class="nav-item">
-                    <a href="<?= BASE_URL .'?act=admin/san-pham' ?>" class="nav-link">
+                    <a href="<?= BASE_URL . '?act=admin/san-pham' ?>" class="nav-link">
                         <i class="nav-icon fas fa-box"></i>
                         <p>
                             Quản lý sản phẩm
@@ -24,7 +24,7 @@
                 </li>
 
                 <li class="nav-item">
-                    <a href="<?= BASE_URL .'?act=admin/danh-muc' ?>" class="nav-link">
+                    <a href="<?= BASE_URL . '?act=admin/danh-muc' ?>" class="nav-link">
                         <i class="nav-icon fas fa-list-ul"></i>
                         <p>
                             Quản lý danh mục
@@ -33,10 +33,19 @@
                 </li>
 
                 <li class="nav-item">
-                    <a href="<?= BASE_URL .'?act=admin/tai-khoan' ?>" class="nav-link">
+                    <a href="<?= BASE_URL . '?act=admin/tai-khoan' ?>" class="nav-link">
                         <i class="nav-icon fas fa-user"></i>
                         <p>
                             Quản lý tài khoản
+                        </p>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a href="<?= BASE_URL . '?act=admin/binh-luan' ?>" class="nav-link">
+                        <i class="nav-icon fas fa-comments"></i>
+                        <p>
+                            Quản lý bình luận
                         </p>
                     </a>
                 </li>

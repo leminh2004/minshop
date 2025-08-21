@@ -77,49 +77,50 @@
             </div>
             <div class="mt-4">
                 <?php if (!empty($comments)) { ?>
-                    <?php foreach ($comments as $cmt) { ?>
+                    <div class="border p-2 mb-2">
+                        <?php foreach ($comments as $cmt) { ?>
 
-                        <?php if ($cmt['active'] == 1): ?>
-                            <div class="border p-2 mb-2">
-                                <strong><i><?= $cmt['user_name'] ?></i></strong> <br>
-                                <i><?= $cmt['content'] ?></i>
-                            </div>
-                        <?php endif; ?>
-
-                    <?php } ?>
-                <?php } else { ?>
-                    <p class="text-muted">Chưa có bình luận nào.</p>
-                <?php } ?>
-            </div>
-        </div>
-
-        <!-- Sản phẩm hot gần đây -->
-        <div class="mt-5">
-            <h4>Sản phẩm hot gần đây</h4>
-            <div class="row">
-                <?php foreach ($featuredProduct as $pro) { ?>
-                    <div class="col-xl-4 col-lg-4 col-md-6">
-                        <div class="single-product mb-60 border p-2">
-                            <div class="product-img text-center">
-                                <img src="<?= $pro['image'] ?>" class="img-fluid" alt="">
-                            </div>
-                            <div class="product-caption text-center mt-2">
-                                <h5><a href="<?= BASE_URL . '?act=products&id=' . $pro['id'] ?>"><?= $pro['name'] ?></a></h5>
-                                <div class="price">
-                                    <?php if (!empty($pro['discount']) && $pro['discount'] < $pro['price']) { ?>
-                                        <span class="text-danger"><?= formatPrice($pro['discount']) ?></span>
-                                        <span class="text-muted"><del><?= formatPrice($pro['price']) ?></del></span>
-                                    <?php } else { ?>
-                                        <span class="text-danger"><?= formatPrice($pro['price']) ?></span>
-                                    <?php } ?>
+                            <?php if ($cmt['active'] == 1): ?>
+                                <div class="border p-2 mb-2">
+                                    <strong><?= $cmt['user_name'] ?></strong> <i><?= date('d/m/Y H:i:s', strtotime($cmt['date'])) ?></i><br>
+                                    <i><?= nl2br($cmt['content']) ?></i>
                                 </div>
-                            </div>
+                            <?php endif; ?>
+
+                        <?php } ?>
+                    <?php } else { ?>
+                        <div class="border p-2 mb-2">
+                            <p class="text-muted">Chưa có bình luận nào.</p>
+                        <?php } ?>
                         </div>
                     </div>
-                <?php } ?>
+                        <hr>
+                    <!-- Sản phẩm hot gần đây -->
+                    <div class="mt-5">
+                        <h4>Sản phẩm hot gần đây</h4>
+                        <div class="row">
+                            <?php foreach ($featuredProduct as $pro) { ?>
+                                <div class="col-xl-4 col-lg-4 col-md-6">
+                                    <div class="single-product mb-60 border p-2">
+                                        <div class="single-product mb-60">
+                                            <img src="<?= $pro['image'] ?>" class="img-fluid" alt="">
+                                        </div>
+                                            <h5><a href="<?= BASE_URL . '?act=san-pham&id=' . $pro['id'] ?>" style= "color: black" ><?= $pro['name'] ?></a></h5>
+                                            <div class="price">
+                                                <?php if (!empty($pro['discount']) && $pro['discount'] < $pro['price']) { ?>
+                                                    <span class="text-danger"><?= formatPrice($pro['discount']) ?></span>
+                                                    <span class="text-muted"><del><?= formatPrice($pro['price']) ?></del></span>
+                                                <?php } else { ?>
+                                                    <span class="text-danger"><?= formatPrice($pro['price']) ?></span>
+                                                <?php } ?>
+                                            </div>
+                                        
+                                    </div>
+                                </div>
+                            <?php } ?>
+                        </div>
+                    </div>
             </div>
-        </div>
-    </div>
 
 </main>
 
