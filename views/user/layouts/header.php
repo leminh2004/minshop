@@ -7,7 +7,7 @@
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="manifest" href="site.webmanifest">
-		<!-- <link rel="shortcut icon" type="image/x-icon" href="./assets/user/assets/img/favicon.ico"> -->
+		<link rel="shortcut icon" type="image/x-icon" href="./assets/user/assets/img/icon/icon_logo.png">
 
         <!-- FontAwesome -->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
