@@ -32,20 +32,20 @@
                     </a>
                 </li>
 
-                <li class="nav-item">
-                    <a href="<?= BASE_URL . '?act=admin/tai-khoan' ?>" class="nav-link">
-                        <i class="nav-icon fas fa-user"></i>
+                                <li class="nav-item">
+                    <a href="<?= BASE_URL . '?act=admin/binh-luan' ?>" class="nav-link">
+                        <i class="nav-icon fas fa-comments"></i>
                         <p>
-                            Quản lý tài khoản
+                            Quản lý bình luận
                         </p>
                     </a>
                 </li>
 
                 <li class="nav-item">
-                    <a href="<?= BASE_URL . '?act=admin/binh-luan' ?>" class="nav-link">
-                        <i class="nav-icon fas fa-comments"></i>
+                    <a href="<?= BASE_URL . '?act=admin/tai-khoan' ?>" class="nav-link">
+                        <i class="nav-icon fas fa-user"></i>
                         <p>
-                            Quản lý bình luận
+                            Quản lý tài khoản
                         </p>
                     </a>
                 </li>

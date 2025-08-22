@@ -61,7 +61,7 @@
                             <div class="mt-5">
                                 <h3>Mô tả chi tiết</h3>
                                 <p>
-                                    <?= $product['description'] ?>
+                                    <?= nl2br($product['description']) ?>
                                 </p>
                             </div>
                         </div>

@@ -40,8 +40,8 @@
                                     <span><?= $cmt['user_name'] ?></span>
                                 </div>
                                 <div class="mb-3">
-                                    <label class="fw-bold"><i class="fas fa-user me-2"></i>Product ID: </label>
-                                    <span><?= $cmt['product_id'] ?></span>
+                                    <label class="fw-bold"><i class="fas fa-box me-2"></i>Product ID: </label>
+                                    <span><a href="<?= BASE_URL . '?act=san-pham&id=' . $cmt['product_id'] ?>"><?=$cmt['product_id'] ?></a></span>
                                 </div>
                                 <div class="mb-3">
                                     <label class="fw-bold"><i class="fas fa-align-left me-2"></i>Nội dung:</label>

@@ -17,7 +17,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Quản lý sản phẩm</h1>
+                    <h1>Quản lý tài khoản</h1>
                 </div>
             </div>
         </div><!-- /.container-fluid -->
@@ -84,7 +84,7 @@
                                                             <a href="<?= BASE_URL . '?act=admin/xoa-tai-khoan&id=' . $user['id'] ?>" style="pointer-events: none; opacity: 0.6;">
                                                                 <button class="btn btn-danger" disabled><i class="far fa-trash-alt"></i></button>
                                                             </a>
-                                                        <?php else: ?>
+                                                        <?php elseif($_SESSION['user']['name'] == $user['name']): ?>
                                                             <a href="<?= BASE_URL . '?act=admin/form-sua-tai-khoan&id=' . $user['id'] ?>">
                                                                 <button class="btn btn-warning"><i class="fas fa-cogs"></i></button>
                                                             </a>
